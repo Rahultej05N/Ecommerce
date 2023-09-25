@@ -43,35 +43,50 @@ export default function Cart() {
     <div>
 
       {console.log(data)}
-      <div className='container m-auto mt-5 table-responsive  table-responsive-sm table-responsive-md' >
-        <table className='table table-hover '>
-          <thead className=' text-success fs-4'>
-            <tr>
-              <th scope='col' >#</th>
-              <th scope='col' >Name</th>
-              <th scope='col' >Quantity</th>
-              <th scope='col' >Option</th>
-              <th scope='col' >Amount</th>
-              <th scope='col' ></th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((food, index) => (
-              <tr>
-                <th scope='row' >{index + 1}</th>
-                <td >{food.name}</td>
-                <td>{food.qty}</td>
-                <td>{food.size}</td>
-                <td>{food.price}</td>
-                <td ><button type="button" className="btn p-0"><Delete onClick={() => { dispatch({ type: "REMOVE", index: index }) }} /></button> </td></tr>
-            ))}
-          </tbody>
-        </table>
-        <div><h1 className='fs-2'>Total Price: {totalPrice}/-</h1></div>
-        <div>
-          <button className='btn bg-success mt-5 ' onClick={handleCheckOut} > Check Out </button>
-        </div>
-      </div>
+      <div className='container mt-5'>
+  <div className='table-responsive'>
+    <table className='table table-hover'>
+      <thead className='text-success fs-4'>
+      <tr>
+    <th scope='col' className='d-md-table-cell'>#</th>
+    <th scope='col' className='d-md-table-cell'>Name</th>
+    <th scope='col' className='d-md-table-cell'>Quantity</th>
+    <th scope='col' className='d-md-table-cell'>Option</th>
+    <th scope='col' className='d-md-table-cell'>Amount</th>
+    <th scope='col' className='d-md-none'></th>
+  </tr>
+      </thead>
+      <tbody>
+        {data.map((food, index) => (
+          <tr key={index}>
+            <th scope='row'>{index + 1}</th>
+            <td>{food.name}</td>
+            <td>{food.qty}</td>
+            <td>{food.size}</td>
+            <td>{food.price}</td>
+            <td>
+              <button type="button" className="btn btn-danger btn-sm" onClick={() => { dispatch({ type: "REMOVE", index: index }) }}>
+                Delete
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <div className='text-center'>
+    <h1 className='fs-3'>Total Price: {totalPrice}/-</h1>
+    <button
+  className={`btn btn-success mt-3 ${
+    window.innerWidth >= 768 ? 'btn-lg' : 'btn-md'
+  }`}
+  onClick={handleCheckOut}
+>
+  Check Out
+</button>
+
+  </div>
+</div>
 
 
 
